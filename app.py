@@ -26,7 +26,7 @@ def contact():
         },
         json={
             "from": "onboarding@resend.dev",
-            "to": ["nnm23cs146@nmamit.in"],
+            "to": ["rajathshet.005@gmail.com"],
             "subject": f"Portfolio Message from {name}",
             "html": f"""
                 <h3>New Portfolio Message</h3>
