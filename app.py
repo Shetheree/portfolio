@@ -1,24 +1,10 @@
 from flask import Flask, render_template, request
-from flask_mail import Mail, Message
+import requests
+import os
 
 app = Flask(__name__)
 
-# Gmail Configuration
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-
-import os
-app.config['MAIL_USERNAME'] = 'nnm23cs146@nmamit.in'
-app.config['MAIL_PASSWORD'] = 'eins hsai zshe tgaq'
-
-app.config['MAIL_DEFAULT_SENDER'] = app.config['MAIL_USERNAME']
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
-
-mail = Mail(app)
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
 
 @app.route('/')
 def home():
@@ -32,27 +18,37 @@ def contact():
     email = request.form['email']
     message = request.form['message']
 
-    msg = Message(
-        subject=f'Portfolio Message from {name}',
-        sender=app.config['MAIL_USERNAME'],
-        recipients=[app.config['MAIL_USERNAME']]
+    response = requests.post(
+        "https://api.resend.com/emails",
+        headers={
+            "Authorization": f"Bearer {RESEND_API_KEY}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "from": "onboarding@resend.dev",
+            "to": ["nnm23cs146@nmamit.in"],
+            "subject": f"Portfolio Message from {name}",
+            "html": f"""
+                <h3>New Portfolio Message</h3>
+
+                <p><strong>Name:</strong> {name}</p>
+
+                <p><strong>Email:</strong> {email}</p>
+
+                <p><strong>Message:</strong></p>
+
+                <p>{message}</p>
+            """
+        }
     )
 
-    msg.body = f'''
-Name: {name}
+    print(response.status_code)
+    print(response.text)
 
-Email: {email}
-
-Message:
-{message}
-'''
-
-    mail.send(msg)
-
-    return '''
+    return """
     <h2>Message Sent Successfully!</h2>
     <a href="/">Go Back</a>
-    '''
+    """
 
 
 if __name__ == '__main__':
