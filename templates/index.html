@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Portfolio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --text:#ffffff;
+    --accent:#38bdf8;
+}
+
+.light{
+    --bg:#f5f7fa;
+    --card:#ffffff;
+    --text:#111827;
+    --accent:#2563eb;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    transition:.4s;
+}
+
+header{
+    position:fixed;
+    width:100%;
+    top:0;
+    backdrop-filter:blur(10px);
+    background:rgba(0,0,0,.2);
+    z-index:1000;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 8%;
+}
+
+.logo{
+    font-size:1.5rem;
+    font-weight:bold;
+    color:var(--accent);
+}
+
+nav ul{
+    display:flex;
+    gap:2rem;
+    list-style:none;
+}
+
+nav a{
+    color:var(--text);
+    text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:var(--accent);
+}
+
+.toggle-btn{
+    cursor:pointer;
+    border:none;
+    padding:.5rem 1rem;
+    border-radius:20px;
+    background:var(--accent);
+    color:white;
+}
+
+section{
+    min-height:100vh;
+    padding:100px 8%;
+    display:flex;
+    align-items:center;
+}
+
+.hero{
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:2rem;
+}
+
+.hero-text h1{
+    font-size:3rem;
+}
+
+.hero-text span{
+    color:var(--accent);
+}
+
+.typing{
+    font-size:1.5rem;
+    margin-top:1rem;
+    color:var(--accent);
+}
+
+.btn{
+    display:inline-block;
+    margin-top:2rem;
+    padding:12px 25px;
+    background:var(--accent);
+    color:white;
+    text-decoration:none;
+    border-radius:30px;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.hero-img img{
+    width:400px;
+    height:500px;
+    object-fit:cover;
+
+}
+
+
+.section-title{
+    text-align:center;
+    margin-bottom:3rem;
+    font-size:2.5rem;
+}
+
+.about,
+.skills,
+.projects,
+.contact{
+    flex-direction:column;
+}
+
+.about-card{
+    max-width:800px;
+    background:var(--card);
+    padding:2rem;
+    border-radius:20px;
+}
+
+.skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+    width:100%;
+}
+
+.skill{
+    background:var(--card);
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    transition:.3s;
+}
+
+.skill:hover{
+    transform:translateY(-10px);
+    background:var(--accent);
+}
+
+.projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    width:100%;
+}
+
+.project{
+    background:var(--card);
+    border-radius:20px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.project:hover{
+    transform:scale(1.05);
+}
+
+.project img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.project-content{
+    padding:20px;
+}
+
+.contact form{
+    width:100%;
+    max-width:600px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+input, textarea{
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+}
+
+button{
+    padding:15px;
+    border:none;
+    background:var(--accent);
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+}
+
+@media(max-width:768px){
+    nav ul{
+        display:none;
+    }
+
+    .hero{
+        text-align:center;
+        justify-content:center;
+    }
+
+    .hero-text h1{
+        font-size:2.2rem;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav>
+<div class="logo">Portfolio</div>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+
+<button class="toggle-btn" onclick="toggleTheme()">
+🌙 Theme
+</button>
+</nav>
+</header>
+
+<section id="home" class="hero">
+<div class="hero-text">
+<h1>Hello, I'm <span>Sayed Rukshaan</span></h1>
+<div class="typing"></div>
+
+<p style="margin-top:20px;max-width:500px;">
+Passionate developer creating modern web experiences and innovative solutions.
+</p>
+
+<a href="#projects" class="btn">View Projects</a>
+</div>
+
+<div class="hero-img">
+<img src="{{ url_for('static', filename='image.jpg') }}" alt="Profile"></div>
+</section>
+
+<section id="about" class="about">
+<h2 class="section-title">About Me</h2>
+
+<div class="about-card">
+<p>
+I am a web developer focused on creating responsive, user-friendly,
+and visually appealing applications. I enjoy learning new technologies
+and solving real-world problems through code.
+</p>
+</div>
+</section>
+
+<section id="skills" class="skills">
+<h2 class="section-title">Skills</h2>
+
+<div class="skills-grid">
+<div class="skill">HTML</div>
+<div class="skill">CSS</div>
+<div class="skill">JavaScript</div>
+<div class="skill">React</div>
+<div class="skill">Node.js</div>
+<div class="skill">Python</div>
+</div>
+</section>
+
+<section id="projects" class="projects">
+<h2 class="section-title">Projects</h2>
+
+<div class="projects-grid">
+
+<div class="project">
+<img src="https://picsum.photos/400/200?1">
+<div class="project-content">
+<h3>Project One</h3>
+<p>Responsive web application.</p>
+</div>
+</div>
+
+<div class="project">
+<img src="https://picsum.photos/400/200?2">
+<div class="project-content">
+<h3>Project Two</h3>
+<p>Interactive dashboard.</p>
+</div>
+</div>
+
+<div class="project">
+<img src="https://picsum.photos/400/200?3">
+<div class="project-content">
+<h3>Project Three</h3>
+<p>Modern portfolio website.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="contact" class="contact">
+<h2 class="section-title">Contact Me</h2>
+
+<form onsubmit="submitForm(event)">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea rows="5" placeholder="Your Message"></textarea>
+<button type="submit">Send Message</button>
+</form>
+</section>
+
+<footer>
+© 2026 Your Name | Portfolio
+</footer>
+
+<script>
+// Theme Toggle
+function toggleTheme(){
+    document.body.classList.toggle("light");
+}
+
+// Typing Effect
+const roles = [
+    "Frontend Developer",
+    "UI/UX Designer",
+    "JavaScript Enthusiast",
+    "Problem Solver"
+];
+
+let roleIndex = 0;
+let charIndex = 0;
+let typingElement = document.querySelector(".typing");
+
+function type(){
+    if(charIndex < roles[roleIndex].length){
+        typingElement.textContent += roles[roleIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type,100);
+    }else{
+        setTimeout(erase,1500);
+    }
+}
+
+function erase(){
+    if(charIndex > 0){
+        typingElement.textContent =
+        roles[roleIndex].substring(0,charIndex-1);
+        charIndex--;
+        setTimeout(erase,50);
+    }else{
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(type,300);
+    }
+}
+
+type();
+
+// Contact Form Demo
+function submitForm(e){
+    e.preventDefault();
+    alert("Message sent successfully!");
+}
+</script>
+
+</body>
+</html>
