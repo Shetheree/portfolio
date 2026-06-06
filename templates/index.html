@@ -344,10 +344,12 @@ and solving real-world problems through code.
 <section id="contact" class="contact">
 <h2 class="section-title">Contact Me</h2>
 
-<form onsubmit="submitForm(event)">
-<input type="text" placeholder="Your Name" required>
-<input type="email" placeholder="Your Email" required>
-<textarea rows="5" placeholder="Your Message"></textarea>
+<form action="/contact" method="POST">
+<input type="text" name="name" placeholder="Your Name" required>
+
+<input type="email" name="email" placeholder="Your Email" required>
+
+<textarea name="message" rows="5" placeholder="Your Message" required></textarea>
 <button type="submit">Send Message</button>
 </form>
 </section>
@@ -398,11 +400,7 @@ function erase(){
 
 type();
 
-// Contact Form Demo
-function submitForm(e){
-    e.preventDefault();
-    alert("Message sent successfully!");
-}
+
 </script>
 
 </body>
