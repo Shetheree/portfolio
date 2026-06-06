@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import requests
 import os
 
@@ -6,9 +6,11 @@ app = Flask(__name__)
 
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
 
+
 @app.route('/')
 def home():
-    return render_template('index.html')
+    success = request.args.get('success')
+    return render_template('index.html', success=success)
 
 
 @app.route('/contact', methods=['POST'])
@@ -45,10 +47,7 @@ def contact():
     print(response.status_code)
     print(response.text)
 
-    return """
-    <h2>Message Sent Successfully!</h2>
-    <a href="/">Go Back</a>
-    """
+    return redirect(url_for('home', success='1'))
 
 
 if __name__ == '__main__':
