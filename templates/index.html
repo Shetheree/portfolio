@@ -410,6 +410,7 @@ section{
     width:400px;
     height:500px;
     object-fit:cover;
+    
 
 }
 
@@ -564,10 +565,17 @@ Passionate developer creating modern web experiences and innovative solutions.
 download
 class="btn resume-btn">
 Download Resume
-</a></div>
+</a>
+
+<a href="{{ url_for('static', filename='internship1.pdf') }}"
+download
+class="btn resume-btn">
+Intership
+</a>
+</div>
 
 <div class="hero-img">
-<img src="{{ url_for('static', filename='image.jpg') }}" alt="Profile"></div>
+<img src="{{ url_for('static', filename='Rajath_S_Shet_Secretary.JPG') }}" alt="Profile"></div>
 </section>
 
 <section id="about" class="about">
@@ -614,11 +622,19 @@ Download Resume
     <h2>Certifications</h2>
 
     <div class="cert-grid">
-        <img src="{{ url_for('static', filename='certificates/NNM23CS146.jpg') }}" alt="Python Certificate">
-
         <img src="{{ url_for('static', filename='certificates/62.png') }}" alt="Flask Certificate">
 
         <img src="{{ url_for('static', filename='certificates/certificate1.jpg') }}" alt="React Certificate">
+
+        <img src="{{ url_for('static', filename='certificates/Rajath s shet (1).png') }}" alt="React Certificate">
+
+         <img src="{{ url_for('static', filename='certificates/certi2.jpg') }}" alt="React Certificate">       
+
+        <img src="{{ url_for('static', filename='certificates/NNM23CS146.jpg') }}" alt="Python Certificate">
+
+                        
+
+
     </div>
 </section>
 <div id="popup" class="popup">
@@ -699,10 +715,9 @@ Node.js, Express and MongoDB.
 <div class="project">
 <img src="https://picsum.photos/400/200?2">
 <div class="project-content">
-<h3>Portfolio Website</h3>
+<h3>Live Auction</h3>
 <p>
-Responsive Flask portfolio with contact form,
-dark mode and Resend email integration.
+Live auction platform with real-time bidding and item management.
 </p>
 </div>
 </div>
@@ -711,10 +726,9 @@ dark mode and Resend email integration.
 <div class="project">
 <img src="https://picsum.photos/400/200?3">
 <div class="project-content">
-<h3>Currency Converter</h3>
+<h3>E-commerce Platform</h3>
 <p>
-Python application supporting multiple
-international currencies and conversions.
+Full-stack e-commerce platform with React frontend and Node.js backend.
 </p>
 </div>
 </div>
